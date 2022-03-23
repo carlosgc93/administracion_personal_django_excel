@@ -1,0 +1,88 @@
+{% extends "./base.html" %}
+{% block title %} Expedientes Regulacion {% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h4>Registro de Expedientes</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarExtranjero/" method="post"> {% csrf_token %}
+                        <div class="form-group py-1">
+                            <input type="number" id="txtnumExpediente" name="txtnumExpediente" class="form-control"
+                                   placeholder="Número de Expediente" required>
+                        </div>
+                        <div class="form-group py-1">
+                            <input type="number" id="txtnumNue" name="txtnumNue" class="form-control"
+                                   placeholder="Ingrese NUE" required>
+                        </div>
+                        <div class="form-group py-1">
+                            <input type="number" id="txtnumNut" name="txtnumNut" class="form-control"
+                                   placeholder="Ingrese NUT" required>
+                        </div>
+
+                        <div class="form-group py-1">
+                            <label>Fecha de Apertura Expediente</label>
+                            <input type="date" id="txtfechaApertura" name="txtfechaApertura" class="form-control"
+                                   required>
+                        </div>
+                        <div class="form-group py-1">
+                            <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                                   placeholder="Nombre Completo" required>
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Sexo</label>
+                            <select  id="txtsexo" name="txtsexo" class="form-control" required>
+                              <option value="F">Femenino</option>
+                              <option value="M">Masculino</option>
+                              </select>
+                        </div>
+                        <div class="form-group py-1">
+                            <input type="text" id="txtnacionalidad" name="txtnacionalidad" class="form-control"
+                                   placeholder="Nacionalidad" required>
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Fecha de Nacimiento</label>
+                            <input type="date" id="txtfechaNacimiento" name="txtfechaNacimiento" class="form-control"
+                                   required>
+                        </div>
+                        <div class="form-group py-1 text-center">
+                            <button type="submit" class="btn btn-success ">REGISTRAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h5> Expedientes recientes</h5>
+            <div class="table py-1">
+                <table class="table table-striped">
+                    <thead>
+                    <th>Número NUE</th>
+                    <th>Número NUT</th>
+                    <th>Número Expediente</th>
+                    <th>Fecha Apertura</th>
+                    <th>Nombre Completo</th>
+                    <th>Sexo</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    </thead>
+                    <tbody>
+                    {% for e in expedientes %}
+                        <tr>
+                            <td>{{ e.numNue }}</td>
+                            <td>{{ e.numNut }}</td>
+                            <td>{{ e.numExpediente }}</td>
+                            <td>{{ e.fechaApertura|date:"d/m/Y" }}</td>
+                            <td>{{ e.nombre }}</td>
+                            <td>{{ e.get_sexo_display }}</td>
+                            <td>{{ e.nacionalidad }}</td>
+                            <td>{{ e.fechaNacimiento |date:"d/m/Y"}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

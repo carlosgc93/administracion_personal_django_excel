@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+{% block title %} Expedientes Regulacion {% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <h4>Edición del Registro</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/editarExpediente" method="post"> {% csrf_token %}
+                        <div class="form-group py-1">
+                            <label>NUE</label>
+                            <input type="number" id="txtnumNue" name="txtnumNue" class="form-control"
+                                   value="{{ expediente.numNue }}" readonly >
+                        </div>
+                        <div class="form-group py-1">
+                            <label>NUT</label>
+                            <input type="number" id="txtnumNut" name="txtnumNut" class="form-control"
+                                   value="{{ expediente.numNut }}">
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Número de Expediente</label>
+                            <input type="number" id="txtnumExpediente" name="txtnumExpediente" class="form-control"
+                                   value="{{ expediente.numExpediente }}">
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Fecha de Apertura Expediente</label>
+                            <input type="date" id="txtfechaApertura" name="txtfechaApertura" class="form-control"
+                                   value="{{ expediente.fechaApertura |date:"Y-m-d"  }}" >
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Nombre del Extranjero</label>
+                            <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                                   value="{{ expediente.nombre }}">
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Sexo</label>
+                            <select  id="txtsexo" name="txtsexo" class="form-control" required>
+                              <option value="F">Femenino</option>
+                              <option value="M">Masculino</option>
+                              </select>
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Nacionalidad</label>
+                            <input type="text" id="txtnacionalidad" name="txtnacionalidad" class="form-control"
+                                   value="{{ expediente.nacionalidad }}">
+                        </div>
+                        <div class="form-group py-1">
+                            <label>Fecha de Nacimiento</label>
+                            <input type="date" id="txtfechaNacimiento" name="txtfechaNacimiento" class="form-control"
+                                   value="{{ expediente.fechaNacimiento |date:"Y-m-d" }}" >
+                        </div>
+                        <div class="form-group py-1 text-center">
+                            <button type="submit" class="btn btn-success ">ACTUALIZAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

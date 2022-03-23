@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+</head>
+<body>
+
+<form method="POST" action="{% url 'login' %}" class="form-box animated fadeInUp">
+    {% csrf_token %}
+    <h1 class="form-title">EXPEDIENTES REGULACIÓN TENOSIQUE</h1>
+    {% if form.errors %}
+    <p style="color: aliceblue">Usuario o Clave Incorrecta!</p>
+{% endif %}
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    <div>
+        <button type="submit" value="login">  Iniciar </button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+</body>
+<!-- CSS -->
+<style type="text/css">
+    body, html {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #04a026dc;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .form-box {
+        width: 300px;
+        padding: 40px;
+        background: #000000;
+        text-align: center;
+    }
+
+    .form-title {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .form-box input[type="text"], .form-box input[type="password"], .form-box button[type="submit"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #f7f7f7;
+        padding: 14px 10px;
+        width: 200px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+    }
+
+    .form-box input[type="text"]:focus, .form-box input[type="password"]:focus {
+        width: 280px;
+        border-color: #ffffff;
+    }
+
+    .form-box button[type="submit"] {
+        border: 0;
+        background: #7c0606;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #000000;
+        padding: 14px 40px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    .form-box button[type="submit"]:hover {
+        background: none;
+    }
+</style>
+</html>

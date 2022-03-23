@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% block title %} Expedientes Regulacion {% endblock %}
+{% block body %}
+   
+        <div class="container">
+
+          <!--Simple Form-->
+          <h2 class="my-4">AGREGAR EXPEDIENTE EN FORMATO PDF</h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <input type="file" name="upload" accept=".doc, .docx, .pdf, .txt">
+                <br>
+                <button class="btn btn-success my-4" type="submit">Subir Archivo</button>
+          </form>
+        </div>
+
+{% endblock %}

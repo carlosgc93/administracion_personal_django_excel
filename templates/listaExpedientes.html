@@ -1,0 +1,51 @@
+{% extends "./base.html" %}
+{% block title %} Listado Completo de Expedientes {% endblock %}
+{% block body %}
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0">
+            <input name="numNue" class="form-control mr-sm-2" type="search" placeholder="Escriba el NUE del Extranjero"
+                   aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <div class="">
+            <div class="table-responsive py-1">
+                <table class="table table-striped">
+                    <thead>
+                    <th>Número NUE</th>
+                    <th>Número NUT</th>
+                    <th>Número Expediente</th>
+                    <th>Fecha Apertura</th>
+                    <th>Nombre Completo</th>
+                    <th>Sexo</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th colspan="2">Opciones</th>
+                    <th colspan="2">Archivos</th>
+                    </thead>
+                    <tbody>
+                    {% for e in lista %}
+                        <tr>
+                            <td>{{ e.numNue }}</td>
+                            <td>{{ e.numNut }}</td>
+                            <td>{{ e.numExpediente }}</td>
+                            <td>{{ e.fechaApertura|date:"d/m/Y" }}</td>
+                            <td>{{ e.nombre }}</td>
+                            <td>{{ e.get_sexo_display }}</td>
+                            <td>{{ e.nacionalidad }}</td>
+                            <td>{{ e.fechaNacimiento |date:"d/m/Y"}}</td>
+                            <td><a href="{% url 'edicion' e.numNue %}" class="btn btn-sm btn-info">Editar</a></td>
+                            <td><a href="{% url 'confirmacionEliminar' e.numNue %}" class="btn btn-sm btn-danger btnEliminacion">Eliminar</a></td>
+                            <td><a href="{% url 'expedientePDF' e.numNue %}" class="btn btn-sm btn-warning btnExpediente"> Subir PDF</a></td>
+                            {% if e.expedientePDF %}
+                            <td><a href="{{ e.expedientePDF.url }}" class="btn btn-sm btn-success btnExpediente"> Ver PDF</a></td>
+                            {% else %}
+                                <td><a href="" class="btn btn-sm btn-secondary btnExpediente" disabled="true"> Ver PDF</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
