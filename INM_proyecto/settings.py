@@ -132,7 +132,7 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 django_heroku.settings(locals())
 
-USE_S3 = os.getenv('USE_S3') == 'TRUE'
+USE_S3 = os.getenv('USE_S3',None) == 'TRUE'
 
 if USE_S3:
     # aws settings
