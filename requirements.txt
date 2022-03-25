@@ -5,5 +5,5 @@ sqlparse==0.4.2
 tzdata==2021.5
 gunicorn
 django-heroku
-boto3==1.17.58
-django-storages==1.11.1
+boto3
+django-storages
