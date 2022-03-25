@@ -1,5 +1,5 @@
 import os
-
+from INM_proyecto.storages_backend import PublicMediaStorage
 from django.db import models
 
 
@@ -23,4 +23,4 @@ class registroExpediente(models.Model):
         default="F",)
     nacionalidad = models.CharField(max_length=30)
     fechaNacimiento = models.DateField()
-    expedientePDF = models.FileField(null=True,default=None)
+    expedientePDF = models.FileField(null=True,default=None, storage=PublicMediaStorage())
