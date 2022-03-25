@@ -7,7 +7,7 @@ from django.db import models
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s_%s.%s" % (instance.numExpediente, instance.nombre, instance.fechaApertura, ext)
-    return os.path.join('uploads', filename)
+    return filename
 
 
 class registroExpediente(models.Model):
@@ -23,4 +23,4 @@ class registroExpediente(models.Model):
         default="F",)
     nacionalidad = models.CharField(max_length=30)
     fechaNacimiento = models.DateField()
-    expedientePDF = models.FileField(null=True,default=None, upload_to=content_file_name)
+    expedientePDF = models.FileField(null=True,default=None)
